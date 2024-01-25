@@ -1,0 +1,45 @@
+
+{% extends 'base.html.twig' %}
+{% block title %}Restaurants{% endblock %}
+{% block content%}
+    <h1>Список ресторанов</h1>
+    <div class="container">
+        <div class="cuisines">
+    <ul>
+        <li class="cuisine-link" data-cuisine="Все рестораны">Все рестораны</li>
+        {% for cuisine in cuisines %}
+            <li class="cuisine-link" data-cuisine="{{ cuisine.cuisine }}">{{ cuisine.cuisine }}</li>
+        {% endfor %}
+    </ul>
+        </div>
+        <div id="restaurants-container">
+    <div class="row">
+        </div>
+            {% if restaurants is not empty %}
+        {% for restaurant in restaurants %}
+            <div class="col-md-4">
+                <div class="card">
+                    <a href="{{ path('app_restaurant_detail', {'id': restaurant.id}) }}">
+                    <img src="{{ restaurant.imagePath }}" class="card-img-top" alt="{{ restaurant.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ restaurant.name }}</h5>
+                        <p class="card-text">{{ restaurant.description }}</p>
+                        <p class="card-text">Rating: {{ restaurant.rating }}</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+            {% else %}
+                <div>
+                    <h2>Рестораны не найдены.</h2>
+                </div>
+            {% endif %}
+    </div>
+        </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/cuisine.js') }}"></script>
+{% endblock %}

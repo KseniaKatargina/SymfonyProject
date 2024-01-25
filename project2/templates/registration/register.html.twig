@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <h1>Зарегистрироваться</h1>
+    <br>
+    <br>
+    <br>
+
+    <div class="form">
+        {{ form_start(registrationForm) }}
+
+        <div class="form-group">
+            {{ form_row(registrationForm.email) }}
+            {{ form_errors(registrationForm.email) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(registrationForm.username) }}
+            {{ form_errors(registrationForm.username) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(registrationForm.phone) }}
+            {{ form_errors(registrationForm.phone) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            {{ form_errors(registrationForm.plainPassword) }}
+            <input type="checkbox" id="showPassword"> Показать пароль
+        </div>
+
+
+        <button type="submit" class="btn">Зарегистрироваться</button>
+        <a href="{{ path('app_login') }}">Уже есть аккаунт? Войти</a>
+
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/register.js') }}"></script>
+{% endblock %}

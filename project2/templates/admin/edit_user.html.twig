@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block content %}
+    <h1>Редактирование пользователя</h1>
+    <br>
+    <br>
+    <br>
+    <div class="form">
+    {{ form_start(form) }}
+
+    {{ form_row(form.id) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.password) }}
+
+    <label>Роли пользователя</label>
+    {{ form_row(form.roles) }}
+
+        <button type="submit" class="btn">Сохранить</button>
+
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

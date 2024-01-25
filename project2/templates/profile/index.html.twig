@@ -1,0 +1,23 @@
+
+{% extends 'base.html.twig' %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <h1>Профиль</h1>
+    <div class="contain">
+    <dl>
+        <dt>Имя:</dt>
+        <dd>{{ app.user.username }}</dd>
+
+        <dt>Электронная почта:</dt>
+        <dd>{{ app.user.email }}</dd>
+
+        <dt>Телефон:</dt>
+        <dd>{{ app.user.phone }}</dd>
+        <br>
+        <br>
+        <br>
+        <a href="{{ path('app_edit_profile') }}" class="btn btn-primary">Изменить</a>
+    </dl>
+    </div>
+{% endblock %}

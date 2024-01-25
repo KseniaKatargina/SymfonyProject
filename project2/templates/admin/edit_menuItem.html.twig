@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Редактировать блюдо</h1>
+    <br>
+    <br>
+    <br>
+<div class="form">
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.price) }}
+    {{ form_row(form.imagePath) }}
+    {{ form_row(form.restaurant) }}
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+
+{% block title %}
+Edit MenuItem
+{% endblock %}
+

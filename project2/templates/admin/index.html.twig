@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}AdminPage{% endblock %}
+{% block content %}
+    <h1>Пользователи</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Username</th>
+            <th>Phone</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles|join(', ') }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.phone }}</td>
+                <td>
+                    <a href="{{ path('app_admin_edit', {'id': user.id}) }}">Редактировать</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

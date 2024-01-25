@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}Payment{% endblock %}
+{% block content %}
+    <h1>Ввод данных</h1>
+    <br>
+    <br>
+    <br>
+    <div class="orderContainer">
+    <div class="userInfo">
+        <p>Имя пользователя: {{ app.user.username }}</p>
+        <p>Номер телефона: {{ app.user.phone }}</p>
+
+        <p>Итоговая сумма заказа: {{ totalPrice }} рублей</p>
+    </div>
+    <div class="order">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">Оплатить</button>
+        {{ form_end(form) }}
+    </div>
+    </div>
+{% endblock %}

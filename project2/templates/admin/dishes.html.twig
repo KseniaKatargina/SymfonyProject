@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Dishes
+{% endblock %}
+
+{% block content %}
+    <h1>Блюда</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Ресторан</th>
+            <th>Описание</th>
+            <th>ImagePath</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for dish in dishes %}
+            <tr>
+                <td>{{ dish.id }}</td>
+                <td>{{ dish.name }}</td>
+                <td>{{ dish.price }}</td>
+                <td>{{ dish.restaurant.name}}</td>
+                <td>{{ dish.description }}</td>
+                <td>
+                    {{ dish.imagePath}}
+                </td>
+                <td> <a href="{{ path('app_admin_edit_dish', {'id': dish.id}) }}">Редактировать</a></td>
+                <td> <a href="{{ path('app_admin_delete_dish', {'id': dish.id}) }}">Удалить</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <a style="margin-left: 50%" href="{{ path('app_admin_create_dish') }}" class="btn btn-primary">Добавить блюдо</a>
+
+{% endblock %}
+
+
+

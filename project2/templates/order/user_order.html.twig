@@ -1,0 +1,35 @@
+
+{% extends 'base.html.twig' %}
+{% block title %}Order{% endblock %}
+{% block content %}
+    <h2>Заказ:</h2>
+    {% if items %}
+        <div class="items">
+            {% for item in items %}
+                <div class="item">
+                    <div class="pItem">
+                        <p>{{ item.getMenuItem().name }}</p>
+                        <p>Количество: <button class="btn-sm btn-danger update-quantity" data-order-item-id="{{ item.id }}" data-action="decrease"> - </button> <span id="quantity-{{ item.id }}" class="quantity">{{ item.quantity }}</span><button class="btn-sm btn-success update-quantity" data-order-item-id="{{ item.id }}" data-action="increase"> + </button></p>
+                        <button class="btn-sm btn-danger remove-from-order" data-order-item-id="{{ item.id }}">Удалить из заказа</button>
+                    </div>
+                    <div class="pItem"><p>{{ item.getMenuItem().price }} рублей</p></div>
+                </div>
+            {% endfor %}
+            {% if order.totalPrice > 0 %}
+                <h2 class="totalPrice">Итого: {{ order.totalPrice }} рублей</h2>
+                <div class="btnC">
+                    <a href="{{ path('app_payments', {'totalPrice': order.totalPrice}) }}" class="btn btn-primary">Сделать заказ</a>
+                </div>
+            {% else %}
+                <h2>Заказ пуст</h2>
+            {% endif %}
+        </div>
+    {% else %}
+        <h2>Заказ пуст</h2>
+    {% endif %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script defer src="{{ asset('js/updateQuantity.js') }}"></script>
+    <script src="{{ asset('js/removeFromOrder.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,80 @@
+controllers:
+    resource: ../src/Controller/
+    type: annotation
+
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
+app_logout:
+    path: /logout
+
+app_home:
+    path: /
+    controller: App\Controller\HomeController::index
+    methods: [GET]
+
+app_login:
+    path: /login
+    controller: App\Controller\LoginController::index
+    methods: [GET, POST]
+
+add_to_cart:
+    path: /add-to-cart
+    controller: App\Controller\MenuItemController::addToCart
+    methods: [POST]
+
+update_quantity:
+    path: /update-quantity
+    controller: App\Controller\MenuItemController::updateQuantity
+    methods: [POST]
+
+remove_from_order:
+    path: /remove-from-order
+    controller: App\Controller\MenuItemController::removeFromOrder
+    methods: [POST]
+
+app_order:
+    path: /order
+    controller: App\Controller\OrderController::displayUserOrder
+    methods: [GET]
+
+user_orders:
+    path: /orders
+    controller: App\Controller\OrderController::myOrders
+    methods: [GET]
+
+order_details:
+    path: /order/{orderId}
+    controller: App\Controller\OrderController::details
+    methods: [GET]
+
+app_payments:
+    path: /payment
+    controller: App\Controller\PaymentController::index
+    methods: [GET, POST]
+
+app_profile:
+    path: /profile
+    controller: App\Controller\ProfileController::index
+    methods: [GET]
+
+app_edit_profile:
+    path: /profile/edit
+    controller: App\Controller\ProfileController::editProfile
+    methods: [GET, POST]
+
+app_register:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+    methods: [GET, POST]
+
+app_restaurant_detail:
+    path: /restaurant/{id}
+    controller: App\Controller\RestaurantController::showRestaurantDetail
+    methods: [GET]
+
+load_restaurants:
+    path: /load-restaurants
+    controller: App\Controller\RestaurantController::loadRestaurants
+    methods: [GET]
+

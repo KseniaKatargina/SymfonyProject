@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block title %}Restaurant{% endblock %}
+{% block content%}
+    <h1>{{ restaurant.name }}</h1>
+    <br>
+    <h2>Меню</h2>
+    <div class="row">
+        {% for dish in dishes %}
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ dish.imagePath }}" class="card-img-top" alt="{{ restaurant.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ dish.name }}</h5>
+                        <p class="card-text">{{ dish.description }}</p>
+                        <p class="card-text">Цена: {{ dish.price }} рублей</p>
+                        <button class="btn btn-primary add-to-cart-button" data-dish-id="{{ dish.id }}">Добавить в заказ</button>
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/addToCart.js') }}"></script>
+{% endblock %}

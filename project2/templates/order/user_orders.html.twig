@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}Orders{% endblock %}
+{% block content %}
+    <h1>Ваши заказы</h1>
+    <br>
+    <br>
+    <br>
+    <div class="items">
+        {% for order in orders %}
+            <div class="item">
+                <div class="pItem">
+                    <p>Сумма: {{ order.totalPrice }} рублей</p>
+                </div>
+                <div class="pItem">
+                    <p>Время: {{ order.time|date('Y-m-d H:i') }}</p>
+                </div>
+
+                {% if order.status == 'paid' %}
+                    <button class="btn btn-success status-{{ order.id }}" onclick="updateOrderStatus({{ order.id }}, 'delivered')">Доставлен</button>
+                    <button class="btn btn-danger status-{{ order.id }}" onclick="updateOrderStatus({{ order.id }}, 'cancelled')">Отменить</button>
+                {% elseif order.status == 'active' %}
+                    <a href="{{ path('app_order') }}" class="btn btn-primary">Перейти к заказу</a>
+                {% else %}
+                    <div class="pItem">
+                    <p class="statusT-{{ order.id }}">{{ order.status }}</p>
+                    </div>
+                {% endif %}
+                <div class="pItem">
+                    <a href="{{ path('order_details', {'orderId': order.id}) }}" class="btn btn-primary">Подробности заказа</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+        {% block javascripts %}
+    {{ parent() }}
+    <script defer src="{{ asset('js/updateStatus.js') }}"></script>
+{% endblock %}

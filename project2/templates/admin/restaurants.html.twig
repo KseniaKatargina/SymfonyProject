@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Restaurants
+{% endblock %}
+
+{% block content %}
+<h1>Рестораны</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Адрес</th>
+            <th>Рейтинг</th>
+            <th>Описание</th>
+            <th>ImagePath</th>
+            <th>Кухня</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for restaurant in restaurants %}
+            <tr>
+                <td>{{ restaurant.id }}</td>
+                <td>{{ restaurant.name }}</td>
+                <td>{{ restaurant.address }}</td>
+                <td>{{ restaurant.rating }}</td>
+                <td>{{ restaurant.description }}</td>
+                <td>
+                    {{ restaurant.imagePath}}
+                </td>
+                <td>{{ restaurant.cuisine }}</td>
+                <td> <a href="{{ path('app_admin_edit_restaurant', {'id': restaurant.id}) }}">Редактировать</a></td>
+                <td> <a href="{{ path('app_admin_delete_restaurant', {'id': restaurant.id}) }}">Удалить</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <a style="margin-left: 50%" href="{{ path('app_admin_create_restaurant') }}" class="btn btn-primary">Добавить ресторан</a>
+
+
+{% endblock %}
+
